@@ -1,0 +1,2127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AccuWeather</title>
+    <style>
+      * {
+        /* margin: 10px; */
+        /* padding-right: px; */
+        /* box-sizing: border-box; */
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+        background-color: #e4eaf2;
+      }
+      nav {
+        margin-top: -9px;
+        width: 100%;
+        height: 50px;
+        background-color: black;
+        display: flex;
+        /* justify-content: space-between; */
+        align-items: center;
+        /* /* padding: 0% 50px;
+        position: fixed;
+        top: 0;
+        z-index: 1; */
+      }
+
+      .logo {
+        font-size: 15px;
+        font-weight: bold;
+        text-decoration: #ccc;
+        color: #fff;
+        background-color: black;
+      }
+
+      .icon {
+        /* width: 60%; */
+        /* align: left; */
+        margin-right: 420px;
+        justify-content: left;
+        background-color: black;
+      }
+
+      .search {
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
+        background-color: white;
+      }
+
+      .search form {
+        display: flex;
+        margin: 0;
+        background-color: white;
+      }
+
+      .search input {
+        padding: px;
+        border: 1px solid #ddd;
+        outline: none;
+        border-radius: 5px;
+        margin-right: 16px;
+        font-size: 14px;
+        background-color: white;
+      }
+
+      .search input:hover {
+        border: 1px solid #72a0d4;
+      }
+
+      .search button {
+        padding: 0px;
+        background-color: #fff;
+        border: none;
+        border-radius: 2px;
+        color: #333;
+        font-size: 20px;
+        cursor: pointer;
+      }
+
+      .search button:hover {
+        background-color: #ccc;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: center;
+
+        padding: 4px;
+        margin: 5px;
+        gap: 40px;
+        align-items: center;
+      }
+
+      hr {
+        width: 70%;
+      }
+
+      a {
+        text-decoration: none;
+        color: black;
+      }
+
+      a:hover {
+        background-color: rgb(176, 176, 176);
+        text-decoration: underline;
+      }
+
+      .advertisement {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+      }
+      #two-column-page-content {
+        display: flex;
+        width: 70%;
+        margin: 0 auto;
+      }
+      .page-column-1 {
+        width: 70%;
+        padding: 20px;
+      }
+      .page-column-2 {
+        width: 30%;
+        padding: 20px;
+      }
+
+      .today-weather {
+        max-width: 100%;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+      }
+      .today-weather-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        background-color: white;
+      }
+      .today-weather-nav h4 {
+        margin: 0;
+        background-color: white;
+      }
+      .today-weather-nav p {
+        margin: 0;
+        font-size: 14px;
+        color: #555;
+        background-color: white;
+      }
+      .today-weather-nav-body {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        background-color: white;
+      }
+      .body-item-1,
+      .body-item-2 {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        background-color: white;
+      }
+      .body-item-1 img,
+      .body-item-2 img {
+        height: 55px;
+        width: 55px;
+        background-color: white;
+      }
+
+      .current-weather {
+        max-width: 100%;
+        padding: 20px;
+        margin-top: 15px;
+        background-color: white;
+        border-radius: 10px;
+      }
+      .current-weather-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        background-color: white;
+      }
+      .current-weather-nav h4 {
+        margin: 0;
+        background-color: white;
+      }
+
+      .current-weather-nav-body {
+        display: flex;
+        width: 100%;
+        margin: 0 auto;
+        background-color: white;
+      }
+      .column-item-1 p {
+        margin: 0;
+        font-size: 14px;
+        color: #555;
+        background-color: white;
+      }
+
+      .column-item-1 {
+        width: 100%;
+        padding: 20px;
+        display: flex;
+        gap: 15px;
+        background-color: white;
+      }
+      .column-item-2 {
+        width: 50%;
+        padding: 20px;
+        background-color: white;
+      }
+
+      /* .column-item-2-style {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        background-color: white;
+      } */
+
+      .looking-ahead {
+        max-width: 100%;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        margin-top: 15px;
+      }
+      .looking-ahead-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        background-color: white;
+      }
+
+      .looking-ahead-body {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        background-color: white;
+      }
+      .kathmandu-weather-rader-body {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        background-color: white;
+      }
+      .kathmandu-weather-rader-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        background-color: white;
+      }
+      .kathmandu-weather-rader {
+        max-width: 100%;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        margin-top: 15px;
+      }
+
+      .body-1 {
+        display: flex;
+      }
+      .day-weather-forecast {
+        max-width: 100%;
+        padding: 5px;
+        background-color: white;
+        border-radius: 5px;
+        margin-top: 10px;
+      }
+      .day-weather-forecast-body {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        background-color: white;
+      }
+
+      .advertisement-1 {
+        display: flex;
+        width: 280px;
+      }
+
+      .vl {
+        border-left: 3px solid rgb(0, 0, 0);
+        height: 20px;
+        position: absolute;
+        left: 50%;
+        margin-left: -3px;
+        top: 0;
+      }
+
+      .sun-moon {
+        max-width: 100%;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        margin-top: 15px;
+      }
+
+      .sun-moon-nav {
+        display: flex;
+        font-size: 15px;
+        background-color: white;
+      }
+
+      .sun-moon-body {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        background-color: white;
+      }
+
+      .today-weather-nav {
+        background-color: white;
+      }
+
+      .top-stories-body {
+        background-color: white;
+      }
+
+      .top-stories-body-1 {
+        display: flex;
+        align-items: center;
+        background-color: white;
+      }
+      .top-stories-body-2 {
+        display: flex;
+        align-items: center;
+        background-color: white;
+      }
+      .top-stories-body-3 {
+        display: flex;
+        align-items: center;
+        background-color: white;
+      }
+      .top-stories-body-4 {
+        display: flex;
+        align-items: center;
+        background-color: white;
+      }
+      .top-stories-body-5 {
+        display: flex;
+        align-items: center;
+        background-color: white;
+      }
+      .top-stories-body-6 {
+        display: flex;
+        align-items: center;
+        background-color: white;
+      }
+
+      .top-stories {
+        background-color: white;
+       
+        max-width: 100%;
+        padding: 5px;
+        background-color: white;
+        /* border-radius: 10px; */
+        margin-top: 5px;
+      }
+
+      .advertisement-2 {
+        background-color: white;
+      }
+
+      .top-stories-body-info{
+        background-color: white;
+      }
+
+      .footer-nav{
+        display:flex;
+        justify-content: center;
+        margin: 5px;
+        padding: 2px;
+        gap: 10px;
+        text-align: center;
+        background-color:rgb(151, 232, 228);
+        color: black;
+
+      }
+      .footer-body{
+         
+         display: flex;
+        justify-content: center;
+
+        padding: 4px;
+        margin: 5px;
+        gap: 40px;
+        align-items: center;
+        text-align: center;
+
+      }
+
+      .copywrite{
+        text-align: center;
+      }
+
+      
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="logo">AccuWeather Kathmandu, Bagmati 22°C</div>
+
+      <div class="icon">
+        <img
+          height="30"
+          width="30"
+          src="./image/icons8-rain-cloud-80.png"
+          alt="rain cloud"
+          class="icon"
+        />
+      </div>
+
+      <div class="search">
+        <form>
+          <input type="text" placeholder="search..." />
+          <button type="submit">Go</button>
+        </form>
+      </div>
+    </nav>
+
+    <div class="navbar">
+      <a href="#today">TODAY</a>
+      <a href="#hourly">HOURLY</a>
+      <a href="#daily">DAILY</a>
+      <a href="#radar">RADAR</a>
+      <a href="#MINUECAST">MINUECAST</a>
+      <a href="#monthly">MONTHLY</a>
+      <a href="#air quality">AIR QUALITY</a>
+      <a href="#health & activities">HEALTH & ACTIVITIES</a>
+      <a href="#for busniness">FOR BUSINESS</a>
+    </div>
+
+    <hr />
+    <hr />
+    <div class="advertisement">
+      <img src="./image/77CCHEANNJBBJCWIQ3LLBD.jpg" alt="adv" width="70%" />
+    </div>
+    <div id="two-column-page-content">
+      <div class="page-column-1">
+        <div class="today-weather">
+          <div class="today-weather-nav">
+            <h4>TODAY'S WEATHER</h4>
+            <span id="datetime" style="background-color: white"></span>
+          </div>
+          <hr style="width: 100%" />
+          <div class="today-weather-nav-body">
+            <div class="body-item-1">
+              <img
+                src="https://www.awxcdn.com/adc-assets/images/weathericons/15.svg"
+                alt="icon"
+              />
+              <p style="background-color: white">
+                Overcast and humid; widely separated thunderstorms this
+                afternoon.
+              </p>
+            </div>
+            <div class="body-item-2">
+              <img
+                src="https://www.awxcdn.com/adc-assets/images/weathericons/15.svg"
+                alt="icon"
+              />
+              <p style="background-color: white">
+                Tonight: Considerable clouds and humid with a drenching
+                thunderstorm; watch for flooding.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="current-weather">
+          <div class="current-weather-nav">
+            <h4>CURRENT WEATHER</h4>
+            <span id="datetime-2" style="background-color: white"></span>
+          </div>
+          <hr style="width: 100%" />
+          <div class="current-weather-nav-body">
+            <div class="column-item-1">
+              <div style="background-color: white">
+                <img
+                  src="./image/icons8-cloud-50.png"
+                  alt="icon"
+                  style="background-color: white"
+                  height="100px"
+                  width="80px"
+                />
+                <p style="color: black">
+                  <b style="background-color: white">Cloudy</b>
+                </p>
+                <p style="color: black; background-color: white">
+                  MORE DETAILS >
+                </p>
+              </div>
+
+              <div
+                style="
+                  align-items: center;
+                  justify-content: center;
+                  background-color: white;
+                "
+              >
+                <p
+                  style="background-color: white; font-size: 90px; color: black"
+                >
+                  25°
+                </p>
+                <p
+                  style="
+                    font-size: large;
+                    color: black;
+                    background-color: white;
+                  "
+                >
+                  RealFeal 26°
+                </p>
+              </div>
+            </div>
+
+            <div class="column-item-2">
+              <div class="column-item-2-style" style="background-color: white">
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    background-color: white;
+                  "
+                >
+                  <p style="background-color: white">Wind</p>
+                  <p><b style="background-color: white">SSW 20 km/h</b></p>
+                </div>
+                <hr style="width: 100%" />
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    background-color: white;
+                  "
+                >
+                  <p style="background-color: white">Wind Gusts</p>
+                  <p><b style="background-color: white"> 20 km/h</b></p>
+                </div>
+                <hr style="width: 100%" />
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    background-color: white;
+                  "
+                >
+                  <p style="background-color: white">Air Quality</p>
+                  <p>
+                    <b style="color: red; background-color: white">Fair</b>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="looking-ahead">
+          <div class="looking-ahead-nav">
+            <h4 style="display: flex; background-color: white">
+              LOOKING AHEAD
+            </h4>
+          </div>
+          <hr style="width: 100%; margin-top: -25px" />
+          <div class="looking-ahead-body">
+            <p
+              style="
+                background-color: white;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+              "
+            >
+              Thunderstorms in the area late on Monday night until Friday
+              evening
+            </p>
+          </div>
+        </div>
+        <div class="kathmandu-weather-rader">
+          <div class="kathmandu-weather-rader-nav">
+            <h4 style="display: flex; background-color: white">
+              KATHMANDU WEATHER RADAR
+            </h4>
+          </div>
+          <div class="kathmandu-weather-rader-body">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1280px-World_map_-_low_resolution.svg.png"
+              alt="World Map"
+              style="
+                width: 90%;
+                max-width: 500px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: white;
+              "
+            />
+          </div>
+        </div>
+
+        <!-- <div class="hourly-weather">
+          <div class="hourly-weather-nav">
+            <h4 style="display: flex; background-color: white">
+              HOURLY WEATHER
+            </h4>
+            <div class="hourly-weather-body">
+              <div>
+                <p>12</p>
+                <img
+                  src="./image/icons8-cloudy-sun-66.png"
+                  alt="cloudy sun"
+                  style="width: 60px; height: 60px"
+                />
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+        <div class="day-weather-forecast">
+          <div class="day-weather-forecast-nav">
+            <h4 style="display: flex; background-color: white">
+              10 DAYS WEAETHER FORECAST
+            </h4>
+          </div>
+          <hr style="width: 100%; margin-top: -15px" />
+
+          <div class="day-weather-forecast-body">
+            <div
+              class="day-weather-forecast-body-style"
+              style="background-color: white"
+            >
+              <div
+                class="body-1"
+                style="display: flex; background-color: white"
+              >
+                <div style="background-color: white">
+                  <p style="background-color: white">TODAY</p>
+                  <text style="background-color: white">15/07</text>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 35px;
+                    background-color: white;
+                  "
+                >
+                  <img
+                    src="./image/icons8-cloudy-sun-66.png"
+                    alt="cloud"
+                    height="50px"
+                    width="50px"
+                    style="background-color: white"
+                  />
+                  <p
+                    style="
+                      font-size: xx-large;
+                      margin: 10px;
+                      background-color: white;
+                    "
+                  >
+                    31°
+                  </p>
+                  <p
+                    style="
+                      font-size: large;
+                      margin: -5px;
+                      background-color: white;
+                    "
+                  >
+                    21°
+                  </p>
+                </div>
+                <div
+                  style="
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 35px;
+                    background-color: white;
+                  "
+                >
+                  <div
+                    style="
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      background-color: white;
+                    "
+                  >
+                    <p style="background-color: white">
+                      Couple of thunderstorms
+                    </p>
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      margin-top: -15px;
+                      background-color: white;
+                    "
+                  >
+                    <img
+                      src="./image/icons8-cloud-50.png"
+                      alt="cloud"
+                      height="30px"
+                      width="30px"
+                      style="background-color: white"
+                    />
+                    <p style="background-color: white">
+                      Night: Cloudy, humid; late t-storms
+                    </p>
+                  </div>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 85px;
+                    background-color: white;
+                  "
+                >
+                  <div
+                    style="
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      background-color: white;
+                    "
+                  >
+                    <img
+                      src="./image/icons8-water-drop-50.png"
+                      alt="drop"
+                      height="20px"
+                      width="20px"
+                      style="margin-top: -15px; background-color: white"
+                    />
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      margin-top: 5px;
+                      background-color: white;
+                    "
+                  >
+                    <p
+                      style="
+                        font-size: x-large;
+                        margin-top: 15px;
+                        background-color: white;
+                      "
+                    >
+                      85%
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <hr />
+
+              <div
+                class="body-1"
+                style="display: flex; background-color: white"
+              >
+                <div style="background-color: white">
+                  <p style="background-color: white">TODAY</p>
+                  <text style="background-color: white">15/07</text>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 35px;
+                    background-color: white;
+                  "
+                >
+                  <img
+                    src="./image/icons8-cloudy-sun-66.png"
+                    alt="cloud"
+                    height="50px"
+                    width="50px"
+                    style="background-color: white"
+                  />
+                  <p
+                    style="
+                      font-size: xx-large;
+                      margin: 10px;
+                      background-color: white;
+                    "
+                  >
+                    31°
+                  </p>
+                  <p
+                    style="
+                      font-size: large;
+                      margin: -5px;
+                      background-color: white;
+                    "
+                  >
+                    21°
+                  </p>
+                </div>
+                <div
+                  style="
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 35px;
+                    background-color: white;
+                  "
+                >
+                  <div
+                    style="
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      background-color: white;
+                    "
+                  >
+                    <p style="background-color: white">
+                      Couple of thunderstorms
+                    </p>
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      margin-top: -15px;
+                      background-color: white;
+                    "
+                  >
+                    <img
+                      src="./image/icons8-cloud-50.png"
+                      alt="cloud"
+                      height="30px"
+                      width="30px"
+                      style="background-color: white"
+                    />
+                    <p style="background-color: white">
+                      Night: Cloudy, humid; late t-storms
+                    </p>
+                  </div>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 85px;
+                    background-color: white;
+                  "
+                >
+                  <div
+                    style="
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      background-color: white;
+                    "
+                  >
+                    <img
+                      src="./image/icons8-water-drop-50.png"
+                      alt="drop"
+                      height="20px"
+                      width="20px"
+                      style="margin-top: -15px; background-color: white"
+                    />
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      margin-top: 5px;
+                      background-color: white;
+                    "
+                  >
+                    <p
+                      style="
+                        font-size: x-large;
+                        margin-top: 15px;
+                        background-color: white;
+                      "
+                    >
+                      85%
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <hr />
+
+              <div
+                class="body-1"
+                style="display: flex; background-color: white"
+              >
+                <div style="background-color: white">
+                  <p style="background-color: white">TODAY</p>
+                  <text style="background-color: white">15/07</text>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 35px;
+                    background-color: white;
+                  "
+                >
+                  <img
+                    src="./image/icons8-cloudy-sun-66.png"
+                    alt="cloud"
+                    height="50px"
+                    width="50px"
+                    style="background-color: white"
+                  />
+                  <p
+                    style="
+                      font-size: xx-large;
+                      margin: 10px;
+                      background-color: white;
+                    "
+                  >
+                    31°
+                  </p>
+                  <p
+                    style="
+                      font-size: large;
+                      margin: -5px;
+                      background-color: white;
+                    "
+                  >
+                    21°
+                  </p>
+                </div>
+                <div
+                  style="
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 35px;
+                    background-color: white;
+                  "
+                >
+                  <div
+                    style="
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      background-color: white;
+                    "
+                  >
+                    <p style="background-color: white">
+                      Couple of thunderstorms
+                    </p>
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      margin-top: -15px;
+                      background-color: white;
+                    "
+                  >
+                    <img
+                      src="./image/icons8-cloud-50.png"
+                      alt="cloud"
+                      height="30px"
+                      width="30px"
+                      style="background-color: white"
+                    />
+                    <p style="background-color: white">
+                      Night: Cloudy, humid; late t-storms
+                    </p>
+                  </div>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 85px;
+                    background-color: white;
+                  "
+                >
+                  <div
+                    style="
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      background-color: white;
+                    "
+                  >
+                    <img
+                      src="./image/icons8-water-drop-50.png"
+                      alt="drop"
+                      height="20px"
+                      width="20px"
+                      style="margin-top: -15px; background-color: white"
+                    />
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      margin-top: 5px;
+                      background-color: white;
+                    "
+                  >
+                    <p
+                      style="
+                        font-size: x-large;
+                        margin-top: 15px;
+                        background-color: white;
+                      "
+                    >
+                      85%
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <hr />
+
+              <div
+                class="body-1"
+                style="display: flex; background-color: white"
+              >
+                <div style="background-color: white">
+                  <p style="background-color: white">TODAY</p>
+                  <text style="background-color: white">15/07</text>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 35px;
+                    background-color: white;
+                  "
+                >
+                  <img
+                    src="./image/icons8-cloudy-sun-66.png"
+                    alt="cloud"
+                    height="50px"
+                    width="50px"
+                    style="background-color: white"
+                  />
+                  <p
+                    style="
+                      font-size: xx-large;
+                      margin: 10px;
+                      background-color: white;
+                    "
+                  >
+                    31°
+                  </p>
+                  <p
+                    style="
+                      font-size: large;
+                      margin: -5px;
+                      background-color: white;
+                    "
+                  >
+                    21°
+                  </p>
+                </div>
+                <div
+                  style="
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 35px;
+                    background-color: white;
+                  "
+                >
+                  <div
+                    style="
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      background-color: white;
+                    "
+                  >
+                    <p style="background-color: white">
+                      Couple of thunderstorms
+                    </p>
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      margin-top: -15px;
+                      background-color: white;
+                    "
+                  >
+                    <img
+                      src="./image/icons8-cloud-50.png"
+                      alt="cloud"
+                      height="30px"
+                      width="30px"
+                      style="background-color: white"
+                    />
+                    <p style="background-color: white">
+                      Night: Cloudy, humid; late t-storms
+                    </p>
+                  </div>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 85px;
+                    background-color: white;
+                  "
+                >
+                  <div
+                    style="
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      background-color: white;
+                    "
+                  >
+                    <img
+                      src="./image/icons8-water-drop-50.png"
+                      alt="drop"
+                      height="20px"
+                      width="20px"
+                      style="margin-top: -15px; background-color: white"
+                    />
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      margin-top: 5px;
+                      background-color: white;
+                    "
+                  >
+                    <p
+                      style="
+                        font-size: x-large;
+                        margin-top: 15px;
+                        background-color: white;
+                      "
+                    >
+                      85%
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <hr />
+
+              <div
+                class="body-1"
+                style="display: flex; background-color: white"
+              >
+                <div style="background-color: white">
+                  <p style="background-color: white">TODAY</p>
+                  <text style="background-color: white">15/07</text>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 35px;
+                    background-color: white;
+                  "
+                >
+                  <img
+                    src="./image/icons8-cloudy-sun-66.png"
+                    alt="cloud"
+                    height="50px"
+                    width="50px"
+                    style="background-color: white"
+                  />
+                  <p
+                    style="
+                      font-size: xx-large;
+                      margin: 10px;
+                      background-color: white;
+                    "
+                  >
+                    31°
+                  </p>
+                  <p
+                    style="
+                      font-size: large;
+                      margin: -5px;
+                      background-color: white;
+                    "
+                  >
+                    21°
+                  </p>
+                </div>
+                <div
+                  style="
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 35px;
+                    background-color: white;
+                  "
+                >
+                  <div
+                    style="
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      background-color: white;
+                    "
+                  >
+                    <p style="background-color: white">
+                      Couple of thunderstorms
+                    </p>
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      margin-top: -15px;
+                      background-color: white;
+                    "
+                  >
+                    <img
+                      src="./image/icons8-cloud-50.png"
+                      alt="cloud"
+                      height="30px"
+                      width="30px"
+                      style="background-color: white"
+                    />
+                    <p style="background-color: white">
+                      Night: Cloudy, humid; late t-storms
+                    </p>
+                  </div>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 85px;
+                    background-color: white;
+                  "
+                >
+                  <div
+                    style="
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      background-color: white;
+                    "
+                  >
+                    <img
+                      src="./image/icons8-water-drop-50.png"
+                      alt="drop"
+                      height="20px"
+                      width="20px"
+                      style="margin-top: -15px; background-color: white"
+                    />
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      margin-top: 5px;
+                      background-color: white;
+                    "
+                  >
+                    <p
+                      style="
+                        font-size: x-large;
+                        margin-top: 15px;
+                        background-color: white;
+                      "
+                    >
+                      85%
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <hr />
+
+              <div
+                class="body-1"
+                style="display: flex; background-color: white"
+              >
+                <div style="background-color: white">
+                  <p style="background-color: white">TODAY</p>
+                  <text style="background-color: white">15/07</text>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 35px;
+                    background-color: white;
+                  "
+                >
+                  <img
+                    src="./image/icons8-cloudy-sun-66.png"
+                    alt="cloud"
+                    height="50px"
+                    width="50px"
+                    style="background-color: white"
+                  />
+                  <p
+                    style="
+                      font-size: xx-large;
+                      margin: 10px;
+                      background-color: white;
+                    "
+                  >
+                    31°
+                  </p>
+                  <p
+                    style="
+                      font-size: large;
+                      margin: -5px;
+                      background-color: white;
+                    "
+                  >
+                    21°
+                  </p>
+                </div>
+                <div
+                  style="
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 35px;
+                    background-color: white;
+                  "
+                >
+                  <div
+                    style="
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      background-color: white;
+                    "
+                  >
+                    <p style="background-color: white">
+                      Couple of thunderstorms
+                    </p>
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      margin-top: -15px;
+                      background-color: white;
+                    "
+                  >
+                    <img
+                      src="./image/icons8-cloud-50.png"
+                      alt="cloud"
+                      height="30px"
+                      width="30px"
+                      style="background-color: white"
+                    />
+                    <p style="background-color: white">
+                      Night: Cloudy, humid; late t-storms
+                    </p>
+                  </div>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 85px;
+                    background-color: white;
+                  "
+                >
+                  <div
+                    style="
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      background-color: white;
+                    "
+                  >
+                    <img
+                      src="./image/icons8-water-drop-50.png"
+                      alt="drop"
+                      height="20px"
+                      width="20px"
+                      style="margin-top: -15px; background-color: white"
+                    />
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      margin-top: 5px;
+                      background-color: white;
+                    "
+                  >
+                    <p
+                      style="
+                        font-size: x-large;
+                        margin-top: 15px;
+                        background-color: white;
+                      "
+                    >
+                      85%
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <hr />
+
+              <div
+                class="body-1"
+                style="display: flex; background-color: white"
+              >
+                <div style="background-color: white">
+                  <p style="background-color: white">TODAY</p>
+                  <text style="background-color: white">15/07</text>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 35px;
+                    background-color: white;
+                  "
+                >
+                  <img
+                    src="./image/icons8-cloudy-sun-66.png"
+                    alt="cloud"
+                    height="50px"
+                    width="50px"
+                    style="background-color: white"
+                  />
+                  <p
+                    style="
+                      font-size: xx-large;
+                      margin: 10px;
+                      background-color: white;
+                    "
+                  >
+                    31°
+                  </p>
+                  <p
+                    style="
+                      font-size: large;
+                      margin: -5px;
+                      background-color: white;
+                    "
+                  >
+                    21°
+                  </p>
+                </div>
+                <div
+                  style="
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 35px;
+                    background-color: white;
+                  "
+                >
+                  <div
+                    style="
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      background-color: white;
+                    "
+                  >
+                    <p style="background-color: white">
+                      Couple of thunderstorms
+                    </p>
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      margin-top: -15px;
+                      background-color: white;
+                    "
+                  >
+                    <img
+                      src="./image/icons8-cloud-50.png"
+                      alt="cloud"
+                      height="30px"
+                      width="30px"
+                      style="background-color: white"
+                    />
+                    <p style="background-color: white">
+                      Night: Cloudy, humid; late t-storms
+                    </p>
+                  </div>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 85px;
+                    background-color: white;
+                  "
+                >
+                  <div
+                    style="
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      background-color: white;
+                    "
+                  >
+                    <img
+                      src="./image/icons8-water-drop-50.png"
+                      alt="drop"
+                      height="20px"
+                      width="20px"
+                      style="margin-top: -15px; background-color: white"
+                    />
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      margin-top: 5px;
+                      background-color: white;
+                    "
+                  >
+                    <p
+                      style="
+                        font-size: x-large;
+                        margin-top: 15px;
+                        background-color: white;
+                      "
+                    >
+                      85%
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <hr />
+
+              <div
+                class="body-1"
+                style="display: flex; background-color: white"
+              >
+                <div style="background-color: white">
+                  <p style="background-color: white">TODAY</p>
+                  <text style="background-color: white">15/07</text>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 35px;
+                    background-color: white;
+                  "
+                >
+                  <img
+                    src="./image/icons8-cloudy-sun-66.png"
+                    alt="cloud"
+                    height="50px"
+                    width="50px"
+                    style="background-color: white"
+                  />
+                  <p
+                    style="
+                      font-size: xx-large;
+                      margin: 10px;
+                      background-color: white;
+                    "
+                  >
+                    31°
+                  </p>
+                  <p
+                    style="
+                      font-size: large;
+                      margin: -5px;
+                      background-color: white;
+                    "
+                  >
+                    21°
+                  </p>
+                </div>
+                <div
+                  style="
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 35px;
+                    background-color: white;
+                  "
+                >
+                  <div
+                    style="
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      background-color: white;
+                    "
+                  >
+                    <p style="background-color: white">
+                      Couple of thunderstorms
+                    </p>
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      margin-top: -15px;
+                      background-color: white;
+                    "
+                  >
+                    <img
+                      src="./image/icons8-cloud-50.png"
+                      alt="cloud"
+                      height="30px"
+                      width="30px"
+                      style="background-color: white"
+                    />
+                    <p style="background-color: white">
+                      Night: Cloudy, humid; late t-storms
+                    </p>
+                  </div>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 85px;
+                    background-color: white;
+                  "
+                >
+                  <div
+                    style="
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      background-color: white;
+                    "
+                  >
+                    <img
+                      src="./image/icons8-water-drop-50.png"
+                      alt="drop"
+                      height="20px"
+                      width="20px"
+                      style="margin-top: -15px; background-color: white"
+                    />
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      margin-top: 5px;
+                      background-color: white;
+                    "
+                  >
+                    <p
+                      style="
+                        font-size: x-large;
+                        margin-top: 15px;
+                        background-color: white;
+                      "
+                    >
+                      85%
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <hr />
+
+              <div
+                class="body-1"
+                style="display: flex; background-color: white"
+              >
+                <div style="background-color: white">
+                  <p style="background-color: white">TODAY</p>
+                  <text style="background-color: white">15/07</text>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 35px;
+                    background-color: white;
+                  "
+                >
+                  <img
+                    src="./image/icons8-cloudy-sun-66.png"
+                    alt="cloud"
+                    height="50px"
+                    width="50px"
+                    style="background-color: white"
+                  />
+                  <p
+                    style="
+                      font-size: xx-large;
+                      margin: 10px;
+                      background-color: white;
+                    "
+                  >
+                    31°
+                  </p>
+                  <p
+                    style="
+                      font-size: large;
+                      margin: -5px;
+                      background-color: white;
+                    "
+                  >
+                    21°
+                  </p>
+                </div>
+                <div
+                  style="
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 35px;
+                    background-color: white;
+                  "
+                >
+                  <div
+                    style="
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      background-color: white;
+                    "
+                  >
+                    <p style="background-color: white">
+                      Couple of thunderstorms
+                    </p>
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      margin-top: -15px;
+                      background-color: white;
+                    "
+                  >
+                    <img
+                      src="./image/icons8-cloud-50.png"
+                      alt="cloud"
+                      height="30px"
+                      width="30px"
+                      style="background-color: white"
+                    />
+                    <p style="background-color: white">
+                      Night: Cloudy, humid; late t-storms
+                    </p>
+                  </div>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 85px;
+                    background-color: white;
+                  "
+                >
+                  <div
+                    style="
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      background-color: white;
+                    "
+                  >
+                    <img
+                      src="./image/icons8-water-drop-50.png"
+                      alt="drop"
+                      height="20px"
+                      width="20px"
+                      style="margin-top: -15px; background-color: white"
+                    />
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      margin: 10px;
+                      margin-top: 5px;
+                      background-color: white;
+                    "
+                  >
+                    <p
+                      style="
+                        font-size: x-large;
+                        margin-top: 15px;
+                        background-color: white;
+                      "
+                    >
+                      85%
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sun-moon">
+          <div class="sun-moon-nav">
+            <h4 style="background-color: white">SUN & MOON</h4>
+          </div>
+          <hr style="width: 100%; margin-top: -15px; background-color: white" />
+          <div class="sun-moon-body">
+            <img
+              src="./image/icons8-sun-50.png"
+              alt="sun"
+              height="45px"
+              width="45px"
+              style="background-color: white"
+            />
+
+            <p style="background-color: white">13 hrs 43 mins</p>
+            <div
+              style="
+                margin-left: 350px;
+                text-align: center;
+                padding: 2px;
+                background-color: white;
+              "
+            >
+              <h5 style="background-color: white">Rise</h5>
+              <h5 style="background-color: white">Set</h5>
+            </div>
+            <div style="background-color: white">
+              <h5 style="background-color: white">05:18</h5>
+              <h5 style="background-color: white">19:01</h5>
+            </div>
+          </div>
+          <hr style="width: 100%; margin: 1px" />
+        </div>
+      </div>
+
+      <div class="page-column-2">
+        <div class="advertisement-1">
+          <img
+            src="https://s.adroll.com/a/XBH/F7E/XBHF7EMEM5DIVNITFEGGDE.jpg"
+            alt="adv"
+            width="100%"
+            height="540px"
+          />
+        </div>
+
+        <!-- <div class="advertisement-2">
+          <div class="top-stories">
+            <div class="top-stories-nav">
+              <h4 style="background-color: white">Top Stories</h4>
+            </div>
+            <hr
+              style="width: 100%; margin-top: -10px; background-color: white"
+            />
+            <div class="top-stories-body">
+              <div class="top-stories-body-1">
+                <div class="top-stories-body-info">
+                  <h5 style="margin-top: -5px; background-color: white">
+                    WEATHER FORECAST
+                  </h5>
+                  <h5 style="margin-top: -15px; background-color: white">
+                    Record-Smashing West heat <br />
+                    wave to continue through <br />wave to continue through
+                    <br />3rd week of july<br />10 hours ago
+                  </h5>
+                </div>
+                <img
+                  src="./image/Week3WestJulyHeat15Jul.webp"
+                  alt="drop"
+                  style="margin-left: 35px; background-color: white"
+                />
+              </div>
+            </div>
+          </div>
+          </div>
+          </div>
+          </div>
+           -->
+
+           <div class="advertisement-2">
+  <div class="top-stories">
+    <div class="top-stories-nav">
+      <h4 style="background-color: white">Top Stories</h4>
+    </div>
+    <hr style="width: 100%; margin-top: -10px; background-color: white" />
+    <div class="top-stories-body">
+      <div class="top-stories-body-1">
+        <div class="top-stories-body-info">
+          <h5 style="margin-top: -5px; background-color: white">WEATHER FORECAST</h5>
+          <h5 style="margin-top: -15px; background-color: white">
+            Record-Smashing West heat <br />
+            wave to continue through <br />
+            wave to continue through <br />
+            3rd week of July<br />
+            10 hours ago
+          </h5>
+        </div>
+        <img
+          src="./image/Week3WestJulyHeat15Jul.webp"
+          alt="heat wave"
+          style="margin-left: 35px; background-color: white"
+        />
+      </div>
+      <hr style="width: 100%;"/>
+      <div class="top-stories-body-2">
+  <div class="top-stories-body-info">
+    <h5 style="margin-top: -5px; background-color: white">WEATHER FORECAST</h5>
+    <h5 style="margin-top: -15px; background-color: white">
+      Record-Smashing West heat <br />
+      wave to continue through <br />
+      3rd week of July<br />
+      10 hours ago
+    </h5>
+  </div>
+  <img
+    src="./image/Week3WestJulyHeat15Jul.webp"
+    alt="heat wave"
+    style="margin-left: 35px; background-color: white"
+  />
+</div>
+    </div>
+  </div>
+</div>
+
+<div class="top-stories-body-3">
+  <div class="top-stories-body-info">
+    <h5 style="margin-top: -5px; background-color: white">WEATHER FORECAST</h5>
+    <h5 style="margin-top: -15px; background-color: white">
+      Record-Smashing West heat <br />
+      wave to continue through <br />
+      3rd week of July<br />
+      10 hours ago
+    </h5>
+  </div>
+  <img
+    src="./image/Week3WestJulyHeat15Jul.webp"
+    alt="heat wave"
+    style="margin-left: 35px; background-color: white"
+  />
+</div><div class="top-stories-body-4">
+  <div class="top-stories-body-info">
+    <h5 style="margin-top: -5px; background-color: white">WEATHER FORECAST</h5>
+    <h5 style="margin-top: -15px; background-color: white">
+      Record-Smashing West heat <br />
+      wave to continue through <br />
+      3rd week of July<br />
+      10 hours ago
+    </h5>
+  </div>
+  <img
+    src="./image/Week3WestJulyHeat15Jul.webp"
+    alt="heat wave"
+    style="margin-left: 35px; background-color: white"
+  />
+</div>
+  <div class="top-stories-body-5">
+  <div class="top-stories-body-info">
+    <h5 style="margin-top: -5px; background-color: white">WEATHER FORECAST</h5>
+    <h5 style="margin-top: -15px; background-color: white">
+      Record-Smashing West heat <br />
+      wave to continue through <br />
+      3rd week of July<br />
+      10 hours ago
+    </h5>
+  </div>
+  <img
+    src="./image/Week3WestJulyHeat15Jul.webp"
+    alt="heat wave"
+    style="margin-left: 35px; background-color: white"
+  />
+</div>
+<div class="top-stories-body-6">
+  <div class="top-stories-body-info">
+    <h5 style="margin-top: -5px; background-color: white">WEATHER FORECAST</h5>
+    <h5 style="margin-top: -15px; background-color: white">
+      Record-Smashing West heat <br />
+      wave to continue through <br />
+      3rd week of July<br />
+      10 hours ago
+    </h5>
+  </div>
+  <img
+    src="./image/Week3WestJulyHeat15Jul.webp"
+    alt="heat wave"
+    style="margin-left: 35px; background-color: white"
+  />
+</div>
+
+<div class="advertisement-1">
+          <img
+            src="./image/download.jpg"
+            alt="adv"
+            width=""
+            height="200px"
+            style="margin-top: 20px;"
+          />
+        </div>
+
+          
+            
+        </div>
+        
+
+      </div>
+      
+    </div>
+
+      <div class="footer-nav">
+      <a href="#today" style="background-color:rgb(151, 232, 228);">World  > </a>
+      <a href="#hourly" style="background-color:rgb(151, 232, 228);">Asia >  </a>
+      <a href="#daily" style="background-color:rgb(151, 232, 228);">Nepal ></a>
+      <a href="#radar" style="background-color:rgb(151, 232, 228);" >Bagmati ></a>
+      <a href="#MINUECAST" style="background-color:rgb(151, 232, 228);">Kathmandu </a>
+
+      
+    </div>
+
+    <div class="footer-body">
+         <div class="company">
+              <h4>COMPANY</h4>
+              <h5>Proven Superior Accuracy</h5>
+              <h5>About AccuWeather</h5>
+              <h5>Digital Advertising</h5>
+              <h5>Careers</h5>
+              <h5>Press</h5>
+              <h5>Contact Us</h5></div>
+         <div class="product-service">
+              <h4>PRODUCTS & SERVICES</h4>
+              <h5>For Business</h5>
+              <h5>About AccuWeather</h5>
+              <h5>Digital Advertising</h5>
+              <h5>Careers</h5>
+              <h5>Press</h5>
+              <h5>Contact Us</h5></div>
+         <div class="company">
+              <h4>APPS & DOWNLOADS</h4>
+              <h5>Proven Superior Accuracy</h5>
+              <h5>About AccuWeather</h5>
+              <h5>Digital Advertising</h5>
+              <h5>Careers</h5>
+              <h5>Press</h5>
+              <h5>Contact Us</h5></div>
+         <div class="company">
+              <h4>MORE</h4>
+              <h5>Proven Superior Accuracy</h5>
+              <h5>About AccuWeather</h5>
+              <h5>Digital Advertising</h5>
+              <h5>Careers</h5>
+              <h5>Press</h5>
+              <h5>Contact Us</h5></div>
+         
+            
+
+         </div>
+
+         <hr style="width: 100%; border-width: 3px;">
+
+         <div class="copywrite">
+          <h5 style="color: gray;">© 2024 AccuWeather, Inc. "AccuWeather" and sun design are registered trademarks of AccuWeather, Inc. All Rights Reserved.</h5>
+                    <h5 style="color: gray;">Terms of Use | Privacy Policy | Cookie Policy</h5>
+
+         </div>
+
+    </div>
+
+    <script>
+      function updateDateTime() {
+        const now = new Date();
+        const currentDateTime = now.toLocaleString();
+        document.querySelector("#datetime").textContent = currentDateTime;
+      }
+      setInterval(updateDateTime, 1000);
+    </script>
+    <script>
+      function updateDateTime() {
+        const now = new Date();
+        const currentDateTime = now.toLocaleString();
+        document.querySelector("#datetime-2").textContent = currentDateTime;
+      }
+      setInterval(updateDateTime, 1000);
+    </script>
+  </body>
+</html>
